@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.main = exports.gql = void 0;
-const gql = String.raw;
-exports.gql = gql;
-const main = gql `
-  #graphql
+exports.typeDefs = void 0;
+const categories_schema_1 = require("@schemas/categories.schema");
+const main = /* GraphQL */ `
   type Query {
     _: String
   }
@@ -13,5 +11,6 @@ const main = gql `
     _: String
   }
 `;
-exports.main = main;
+const typeDefs = [main, categories_schema_1.categorySchema];
+exports.typeDefs = typeDefs;
 //# sourceMappingURL=index.js.map
