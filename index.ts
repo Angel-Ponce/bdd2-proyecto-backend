@@ -1,5 +1,27 @@
-let name: string | null = "Angel Carlos Daniel";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
 
-console.log(name);
+const typeDefs = `#graphql 
+    type Query{
+        hello: String
+    }
+`;
 
-export {};
+const resolvers = {
+  Query: {
+    hello: () => "Hello world!",
+  },
+};
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+startStandaloneServer(server, {
+  listen: {
+    port: 4000,
+  },
+}).then(({ url }) => {
+  console.log(`🚀 Server ready at: ${url}`);
+});
