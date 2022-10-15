@@ -5,7 +5,7 @@ const categorySchema = /* GraphQL */ `
   }
 
   extend type Query {
-    categories: [Category]
+    categories: [Category!]!
   }
 `;
 
