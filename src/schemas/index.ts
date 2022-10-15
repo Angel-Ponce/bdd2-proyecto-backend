@@ -1,3 +1,5 @@
+import { categorySchema } from "@schemas/categories.schema";
+
 const main = /* GraphQL */ `
   type Query {
     _: String
@@ -8,6 +10,6 @@ const main = /* GraphQL */ `
   }
 `;
 
-const typeDefs = [main];
+const typeDefs = [main, categorySchema];
 
 export { typeDefs };

@@ -1,4 +1,6 @@
-const resolvers = {
+import { categoryResolver } from "@resolvers/categories.resolver";
+
+const main = {
   Query: {
     _: () => "",
   },
@@ -6,5 +8,7 @@ const resolvers = {
     _: () => "",
   },
 };
+
+const resolvers = [main, categoryResolver];
 
 export { resolvers };
