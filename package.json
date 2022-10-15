@@ -2,7 +2,7 @@
   "name": "bdd2-proyecto-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "./public/index.js",
+  "main": "./api/index.js",
   "scripts": {
     "start": "npx nodemon -r tsconfig-paths/register ./index.ts",
     "build": "tsc"
