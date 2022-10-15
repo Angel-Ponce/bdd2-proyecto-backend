@@ -16,6 +16,7 @@ const server = new ApolloServer({
 startStandaloneServer(server, {
   listen: {
     port: Number(process.env.APP_PORT || 4010),
+    path: "graphql",
   },
 }).then(({ url }) => {
   console.log(`🚀 Server ready at: ${url}`);
