@@ -2,12 +2,15 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { main } from "@schemas/index";
+import { typeDefs } from "@schemas/index";
 import { resolvers } from "@resolvers/index";
+import { makeExecutableSchema } from "graphql-tools";
 
 const server = new ApolloServer({
-  typeDefs: [main],
-  resolvers,
+  schema: makeExecutableSchema({
+    typeDefs,
+    resolvers,
+  }),
 });
 
 startStandaloneServer(server, {

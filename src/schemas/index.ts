@@ -1,7 +1,4 @@
-const gql = String.raw;
-
-const main = gql`
-  #graphql
+const main = /* GraphQL */ `
   type Query {
     _: String
   }
@@ -11,4 +8,6 @@ const main = gql`
   }
 `;
 
-export { gql, main };
+const typeDefs = [main];
+
+export { typeDefs };
