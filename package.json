@@ -4,14 +4,15 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "npx nodemon ./index.ts"
+    "start": "npx nodemon -r tsconfig-paths/register ./index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.0.0",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "tsconfig-paths": "^4.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.0",
