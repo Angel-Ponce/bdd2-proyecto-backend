@@ -1,4 +1,5 @@
 import { categoryResolver } from "@resolvers/categories.resolver";
+import { authenticationResolver } from "@resolvers/authentication.resolver";
 
 const main = {
   Query: {
@@ -9,6 +10,6 @@ const main = {
   },
 };
 
-const resolvers = [main, categoryResolver];
+const resolvers = [main, categoryResolver, authenticationResolver];
 
 export { resolvers };

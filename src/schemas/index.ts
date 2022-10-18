@@ -1,4 +1,5 @@
 import { categorySchema } from "@schemas/categories.schema";
+import { authenticationSchema } from "@schemas/authentication.schema";
 
 const main = /* GraphQL */ `
   type Query {
@@ -10,6 +11,6 @@ const main = /* GraphQL */ `
   }
 `;
 
-const typeDefs = [main, categorySchema];
+const typeDefs = [main, categorySchema, authenticationSchema];
 
 export { typeDefs };
