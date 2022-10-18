@@ -2,9 +2,9 @@ import { db } from "@db";
 
 const authenticationResolver = {
   Mutation: {
-    login: async (_o: any, b: any) => {
+    login: async (_o: any, params: any, context: any) => {
       const data = (await db.query(`exec login ?, ?`, {
-        replacements: [b.input.email || "", b.input.password || ""],
+        replacements: [params.input.email || "", params.input.password || ""],
       })) as any;
 
       if (data[0]?.[0]?.error) {
