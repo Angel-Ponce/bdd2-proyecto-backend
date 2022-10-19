@@ -16,10 +16,6 @@ const authenticationSchema = /* GraphQL */ `
     token: String!
   }
 
-  type Message {
-    message: String!
-  }
-
   extend type Mutation {
     login(input: InputLogin!): Token!
 

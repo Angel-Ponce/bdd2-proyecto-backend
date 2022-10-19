@@ -17,7 +17,7 @@ const authenticationResolver = {
       };
     },
 
-    changePassword: async () => {},
+    changePassword: async () => ({ message: "Unavailable" }),
   },
 };
 
