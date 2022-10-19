@@ -1,20 +1,22 @@
-import { db } from "@db";
+import { exec } from "@helpers";
+import { Args, Context } from "@types";
 
 const authenticationResolver = {
   Mutation: {
-    login: async (_o: any, params: any, context: any) => {
-      const data = (await db.query(`exec login ?, ?`, {
-        replacements: [params.input.email || "", params.input.password || ""],
-      })) as any;
+    login: async (_o: any, params: Args, _context: Context) => {
+      const [data, error] = await exec(
+        "login ?, ?",
+        [params.input.email || "", params.input.password || ""],
+        false
+      );
 
-      if (data[0]?.[0]?.error) {
-        throw new Error(data[0][0].error);
-      }
+      if (error) throw error;
 
       return {
-        token: data[0]?.[0].sessionToken,
+        token: data.sessionToken,
       };
     },
+
     changePassword: async () => {},
   },
 };

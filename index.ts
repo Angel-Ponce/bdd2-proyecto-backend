@@ -23,7 +23,7 @@ startStandaloneServer(server, {
   context: async ({ req }) => {
     const token = req.headers.authorization || "";
 
-    const [data, error] = await exec("getUserByToken ?", [token]);
+    const [data, error] = await exec("getUserByToken ?", [token], false);
 
     let user: User | null = null;
 

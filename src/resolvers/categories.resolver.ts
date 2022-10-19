@@ -1,15 +1,17 @@
 import { GraphQLError } from "graphql";
-import { db } from "@db";
 import { Args, Context } from "@types";
+import { exec } from "@helpers";
 
 const categoryResolver = {
   Query: {
-    categories: async (_o: any, args: Args, context: Context) => {
+    categories: async (_o: any, _args: Args, context: Context) => {
       if (!context.user) throw new GraphQLError("Sin autenticación.");
 
-      const data = await db.query("EXEC dbo.allCategories");
+      const [data, error] = await exec("allCategories");
 
-      return data[0];
+      if (error) throw error;
+
+      return data;
     },
   },
 };

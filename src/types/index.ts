@@ -1,5 +1,7 @@
 interface Args {
-  [key: string]: any;
+  input: {
+    [key: string]: any;
+  };
 }
 
 interface User {
