@@ -51,6 +51,28 @@ const categoryResolver = {
 
       return category;
     },
+
+    updateCategory: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, error] = await exec(
+        "updateCategory ?, ?",
+        [args.input.id || 0, args.input.name || ""],
+        false
+      );
+
+      if (error) throw error;
+
+      const [category, error2] = await exec(
+        "getCategoryById ?",
+        [data.id || 0],
+        false
+      );
+
+      if (error2) throw error2;
+
+      return category;
+    },
   },
 };
 

@@ -8,6 +8,11 @@ const categorySchema = /* GraphQL */ `
     name: String!
   }
 
+  input UpdateCategoryInput {
+    id: Int!
+    name: String!
+  }
+
   extend type Query {
     categories: [Category!]!
     category(input: IdInput!): Category!
@@ -15,6 +20,7 @@ const categorySchema = /* GraphQL */ `
 
   extend type Mutation {
     createCategory(input: CreateCategoryInput!): Category!
+    updateCategory(input: UpdateCategoryInput!): Category!
   }
 `;
 
