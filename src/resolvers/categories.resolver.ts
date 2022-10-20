@@ -73,6 +73,22 @@ const categoryResolver = {
 
       return category;
     },
+
+    deleteCategory: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, error] = await exec(
+        "deleteCategory ?",
+        [args.input.id || 0],
+        false
+      );
+
+      if (error) throw error;
+
+      if (data.result) return { message: "Categoria eliminada correctamente." };
+
+      return { message: "Categoria no eliminada" };
+    },
   },
 };
 

@@ -21,6 +21,7 @@ const categorySchema = /* GraphQL */ `
   extend type Mutation {
     createCategory(input: CreateCategoryInput!): Category!
     updateCategory(input: UpdateCategoryInput!): Category!
+    deleteCategory(input: IdInput!): Message!
   }
 `;
 
