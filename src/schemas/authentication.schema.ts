@@ -13,7 +13,7 @@ const authenticationSchema = /* GraphQL */ `
   }
 
   type Token {
-    token: String!
+    token: UUID!
   }
 
   extend type Mutation {
