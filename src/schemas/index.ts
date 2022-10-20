@@ -6,6 +6,10 @@ const main = /* GraphQL */ `
     message: String!
   }
 
+  input IdInput {
+    id: Int!
+  }
+
   type Query {
     _: String
   }

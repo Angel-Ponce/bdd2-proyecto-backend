@@ -13,6 +13,20 @@ const categoryResolver = {
 
       return data;
     },
+
+    category: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, error] = await exec(
+        "getCategoryById ?",
+        [args.input.id || 0],
+        false
+      );
+
+      if (error) throw error;
+
+      return data;
+    },
   },
 };
 

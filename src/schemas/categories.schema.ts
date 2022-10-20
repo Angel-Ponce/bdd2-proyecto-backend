@@ -6,6 +6,7 @@ const categorySchema = /* GraphQL */ `
 
   extend type Query {
     categories: [Category!]!
+    category(input: IdInput!): Category!
   }
 `;
 

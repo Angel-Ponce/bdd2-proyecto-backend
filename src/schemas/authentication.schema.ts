@@ -8,8 +8,8 @@ const authenticationSchema = /* GraphQL */ `
 
   input ChangePasswordInput {
     id: UUID!
-    oldPassword: String
-    newPassword: String
+    oldPassword: String!
+    newPassword: String!
   }
 
   type Token {
