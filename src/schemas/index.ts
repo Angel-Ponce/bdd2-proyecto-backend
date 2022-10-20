@@ -1,5 +1,6 @@
 import { categorySchema } from "@schemas/categories.schema";
 import { authenticationSchema } from "@schemas/authentication.schema";
+import { severitySchema } from "@schemas/severities.schema";
 
 const main = /* GraphQL */ `
   type Message {
@@ -19,6 +20,6 @@ const main = /* GraphQL */ `
   }
 `;
 
-const typeDefs = [main, categorySchema, authenticationSchema];
+const typeDefs = [main, categorySchema, authenticationSchema, severitySchema];
 
 export { typeDefs };
