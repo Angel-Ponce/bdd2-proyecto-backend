@@ -34,6 +34,7 @@ const userSchema = /* GraphQL */ `
   extend type Mutation {
     createUser(input: CreateUserInput!): User!
     updateUser(input: UpdateUserInput!): User!
+    deleteUser(input: IdInput!): Message!
   }
 `;
 
