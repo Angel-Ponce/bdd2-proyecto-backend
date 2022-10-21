@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "bdd2-proyecto-backend",
+            "script": "npm",
+            "args" : "launch-build"
+        }
+    ]
+}
