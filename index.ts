@@ -27,12 +27,12 @@ const initServer = async () => {
       ApolloServerPluginLandingPageLocalDefault(),
       ApolloServerPluginDrainHttpServer({ httpServer }),
     ],
-    introspection: process.env.NODE_ENV == "production",
+    introspection: true,
   });
 
   await server.start();
 
-  app.use(cors(), express.json(), expressMiddleware(server));
+  app.use(cors(), bodyParser.json(), expressMiddleware(server));
 
   await new Promise((resolve: any) =>
     httpServer.listen({ port: process.env.PORT || 4010 }, resolve)
