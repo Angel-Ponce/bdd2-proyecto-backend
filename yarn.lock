@@ -652,6 +652,13 @@
     "@types/mime" "*"
     "@types/node" "*"
 
+"@types/tedious@^4.0.9":
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@types/tedious/-/tedious-4.0.9.tgz#baa3892e45c63d7aac54d7bf5b01385d210ff19e"
+  integrity sha512-ipwFvfy9b2m0gjHsIX0D6NAAwGCKokzf5zJqUZHUGt+7uWVlBIy6n2eyMgiKQ8ChLFVxic/zwQUhjLYNzbHDRA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/validator@^13.7.1", "@types/validator@^13.7.7":
   version "13.7.7"
   resolved "https://registry.yarnpkg.com/@types/validator/-/validator-13.7.7.tgz#e87cf34dd08522d21acf30130fd8941f433b81b5"
@@ -2328,7 +2335,7 @@ tarn@^3.0.2:
   resolved "https://registry.yarnpkg.com/tarn/-/tarn-3.0.2.tgz#73b6140fbb881b71559c4f8bfde3d9a4b3d27693"
   integrity sha512-51LAVKUSZSVfI05vjPESNc5vwqqZpbXCsU+/+wxlOrUjk2SnFTt97v9ZgQrD4YmxYW1Px6w2KjaDitCfkvgxMQ==
 
-tedious@^15.0.1:
+tedious@^15.0.1, tedious@^15.1.0:
   version "15.1.0"
   resolved "https://registry.yarnpkg.com/tedious/-/tedious-15.1.0.tgz#4f8db104383f50c581f06baeb33ff6966bb27b88"
   integrity sha512-D96Z8SL4ALE/rS6rOAfzWd/x+RD9vWbnNT3w5KZ0e0Tdh5FX1bKEODS+1oemSQM2ok5SktLHqSJqYQRx4yu3WA==
