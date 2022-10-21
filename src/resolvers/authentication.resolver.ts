@@ -2,6 +2,12 @@ import { exec } from "@helpers";
 import { Args, Context } from "@types";
 
 const authenticationResolver = {
+  Query: {
+    me: (_o: any, _args: Args, context: Context) => {
+      return context.user;
+    },
+  },
+
   Mutation: {
     login: async (_o: any, params: Args, _context: Context) => {
       const [data, error] = await exec(

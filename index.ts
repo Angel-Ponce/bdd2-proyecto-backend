@@ -17,8 +17,8 @@ const server = new ApolloServer({
 
 startStandaloneServer(server, {
   listen: {
-    port: Number(process.env.APP_PORT || 4010),
-    host: process.env.APP_HOST || "localhost",
+    port: Number(process.env.PORT || 4010),
+    // host: process.env.APP_HOST || "localhost",
   },
   context: async ({ req }) => {
     const token = req.headers.authorization || "";

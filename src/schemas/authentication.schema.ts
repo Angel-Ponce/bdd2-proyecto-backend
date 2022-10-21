@@ -16,6 +16,10 @@ const authenticationSchema = /* GraphQL */ `
     token: UUID!
   }
 
+  extend type Query {
+    me: User
+  }
+
   extend type Mutation {
     login(input: InputLogin!): Token!
 
