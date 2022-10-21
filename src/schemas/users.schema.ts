@@ -10,9 +10,21 @@ const userSchema = /* GraphQL */ `
     ticketsReportedCount: Int!
   }
 
+  input CreateUserInput {
+    name: String!
+    lastname: String!
+    email: String!
+    password: String!
+    photoURL: String
+  }
+
   extend type Query {
     users: [User!]!
     user(input: IdInput!): User!
+  }
+
+  extend type Mutation {
+    createUser(input: CreateUserInput!): User!
   }
 `;
 

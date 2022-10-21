@@ -29,6 +29,32 @@ const userResolver = {
     },
   },
 
+  Mutation: {
+    createUser: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, e1] = await exec(
+        "createUser ?, ?, ?, ?, ?",
+        [
+          args.input.name || "",
+          args.input.lastname || "",
+          args.input.email || "",
+          args.input.password || "",
+          args.input.photoURL || null,
+        ],
+        false
+      );
+
+      if (e1) throw e1;
+
+      const [user, e2] = await exec("getUserById ?", [data.id || 0], false);
+
+      if (e2) throw e2;
+
+      return user;
+    },
+  },
+
   User: {
     ticketsResolvedCount: async (parent: Parent) => {
       const [data, e1] = await exec(
