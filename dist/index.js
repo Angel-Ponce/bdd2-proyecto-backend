@@ -38,6 +38,7 @@ const server = new server_1.ApolloServer({
         resolvers: index_2.resolvers,
     }),
     plugins: [(0, default_1.ApolloServerPluginLandingPageLocalDefault)()],
+    csrfPrevention: false,
 });
 (0, standalone_1.startStandaloneServer)(server, {
     listen: {
