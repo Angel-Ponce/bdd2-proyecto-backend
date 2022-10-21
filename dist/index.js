@@ -31,11 +31,13 @@ const index_1 = require("./src/schemas/index");
 const index_2 = require("./src/resolvers/index");
 const graphql_tools_1 = require("graphql-tools");
 const _helpers_1 = require("./src/helpers");
+const default_1 = require("@apollo/server/plugin/landingPage/default");
 const server = new server_1.ApolloServer({
     schema: (0, graphql_tools_1.makeExecutableSchema)({
         typeDefs: index_1.typeDefs,
         resolvers: index_2.resolvers,
     }),
+    plugins: [(0, default_1.ApolloServerPluginLandingPageLocalDefault)()],
 });
 (0, standalone_1.startStandaloneServer)(server, {
     listen: {

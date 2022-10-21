@@ -7,12 +7,14 @@ import { resolvers } from "@resolvers/index";
 import { makeExecutableSchema } from "graphql-tools";
 import { exec } from "@helpers";
 import { User } from "@types";
+import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 
 const server = new ApolloServer({
   schema: makeExecutableSchema({
     typeDefs,
     resolvers,
   }),
+  plugins: [ApolloServerPluginLandingPageLocalDefault()],
 });
 
 startStandaloneServer(server, {
