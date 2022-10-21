@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import tedious from "tedious";
+import * as tedious from "tedious";
 
 const db = new Sequelize({
   database: process.env.DB_DATABASE,
