@@ -28,6 +28,7 @@ const initServer = async () => {
       ApolloServerPluginLandingPageLocalDefault(),
       ApolloServerPluginDrainHttpServer({ httpServer }),
     ],
+    introspection: process.env.NODE_ENV !== "production",
   });
 
   await server.start();
