@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx nodemon -r tsconfig-paths/register ./index.ts",
     "build": "tsc && tsc-alias",
-    "run-build": "tsc && tsc-alias && node ./api/index.js"
+    "launch-build": "tsc && tsc-alias && node ./api/index.js"
   },
   "keywords": [],
   "author": "",
