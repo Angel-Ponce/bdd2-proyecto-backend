@@ -53,6 +53,30 @@ const userResolver = {
 
       return user;
     },
+
+    updateUser: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, e1] = await exec(
+        "updateUser ?, ?, ?, ?, ?",
+        [
+          args.input.id || 0,
+          args.input.name || null,
+          args.input.lastname || null,
+          args.input.email || null,
+          args.input.photoURL || null,
+        ],
+        false
+      );
+
+      if (e1) throw e1;
+
+      const [user, e2] = await exec("getUserById ?", [data.id || 0], false);
+
+      if (e2) throw e2;
+
+      return user;
+    },
   },
 
   User: {

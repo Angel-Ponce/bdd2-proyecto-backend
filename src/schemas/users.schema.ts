@@ -18,6 +18,14 @@ const userSchema = /* GraphQL */ `
     photoURL: String
   }
 
+  input UpdateUserInput {
+    id: Int!
+    name: String
+    lastname: String
+    email: String
+    photoURL: String
+  }
+
   extend type Query {
     users: [User!]!
     user(input: IdInput!): User!
@@ -25,6 +33,7 @@ const userSchema = /* GraphQL */ `
 
   extend type Mutation {
     createUser(input: CreateUserInput!): User!
+    updateUser(input: UpdateUserInput!): User!
   }
 `;
 
