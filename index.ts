@@ -8,36 +8,35 @@ import { makeExecutableSchema } from "graphql-tools";
 import { exec } from "@helpers";
 import { User } from "@types";
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import { expressMiddleware } from "@apollo/server/express4";
+import express from "express";
+import http from "http";
+import cors from "cors";
+import bodyParser from "body-parser";
 
-const server = new ApolloServer({
-  schema: makeExecutableSchema({
-    typeDefs,
-    resolvers,
-  }),
-  plugins: [ApolloServerPluginLandingPageLocalDefault()],
-  csrfPrevention: false,
-});
+const initServer = async () => {
+  const app = express();
+  const httpServer = http.createServer(app);
 
-startStandaloneServer(server, {
-  listen: {
-    port: Number(process.env.PORT || 4010),
-    // host: process.env.APP_HOST || "localhost",
-  },
-  context: async ({ req }) => {
-    const token = req.headers.authorization || "";
+  const server = new ApolloServer({
+    schema: makeExecutableSchema({
+      typeDefs,
+      resolvers,
+    }),
+    plugins: [
+      ApolloServerPluginLandingPageLocalDefault(),
+      ApolloServerPluginDrainHttpServer({ httpServer }),
+    ],
+  });
 
-    const [data, error] = await exec("getUserByToken ?", [token], false);
+  await server.start();
 
-    let user: User | null = null;
+  app.use(cors(), bodyParser.json(), expressMiddleware(server));
 
-    if (error) {
-      return { user: null };
-    }
+  await new Promise((resolve: any) =>
+    httpServer.listen({ port: process.env.PORT || 4010 }, resolve)
+  );
+};
 
-    user = data;
-
-    return { user };
-  },
-}).then(({ url }) => {
-  console.log(`🚀 Server ready at: ${url}`);
-});
+initServer();
