@@ -18,4 +18,8 @@ interface Context {
   user: User | null;
 }
 
-export { Args, User, Context };
+interface Parent {
+  [key: string]: any;
+}
+
+export { Args, User, Context, Parent };
