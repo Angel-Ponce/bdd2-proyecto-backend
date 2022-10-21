@@ -4,9 +4,9 @@
   "description": "",
   "main": "./api/index.js",
   "scripts": {
-    "start": "npx nodemon -r tsconfig-paths/register ./index.ts",
+    "dev": "npx nodemon -r tsconfig-paths/register ./index.ts",
     "build": "tsc && tsc-alias",
-    "launch-build": "node ./api/index.js"
+    "start": "node ./api/index.js"
   },
   "keywords": [],
   "author": "",
