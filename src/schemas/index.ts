@@ -3,6 +3,7 @@ import { authenticationSchema } from "@schemas/authentication.schema";
 import { severitySchema } from "@schemas/severities.schema";
 import { stateSchema } from "@schemas/states.schema";
 import { logSchema } from "@schemas/logs.schema";
+import { userSchema } from "@schemas/users.schema";
 
 const main = /* GraphQL */ `
   type Message {
@@ -29,6 +30,7 @@ const typeDefs = [
   severitySchema,
   stateSchema,
   logSchema,
+  userSchema,
 ];
 
 export { typeDefs };

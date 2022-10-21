@@ -1,16 +1,6 @@
 const logSchema = /* GraphQL */ `
   scalar DateTime
 
-  type User {
-    id: Int!
-    name: String!
-    lastname: String!
-    email: String!
-    photoURL: String
-    sessionToken: String!
-    createdAt: DateTime
-  }
-
   type SessionLog {
     id: Int!
     sessionOk: Boolean!
