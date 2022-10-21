@@ -1,5 +1,5 @@
 import { GraphQLError } from "graphql";
-import { Args, Context } from "@types";
+import { Args, Context, Parent } from "@types";
 import { exec } from "@helpers";
 
 const userResolver = {
@@ -26,6 +26,32 @@ const userResolver = {
       if (e1) throw e1;
 
       return data;
+    },
+  },
+
+  User: {
+    ticketsResolvedCount: async (parent: Parent) => {
+      const [data, e1] = await exec(
+        "ticketsResolvedByUserId ?",
+        [parent.id || 0],
+        false
+      );
+
+      if (e1) throw e1;
+
+      return data.count;
+    },
+
+    ticketsReportedCount: async (parent: Parent) => {
+      const [data, e1] = await exec(
+        "ticketsReportedByUserId ?",
+        [parent.id || 0],
+        false
+      );
+
+      if (e1) throw e1;
+
+      return data.count;
     },
   },
 };

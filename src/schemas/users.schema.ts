@@ -6,6 +6,8 @@ const userSchema = /* GraphQL */ `
     email: String!
     photoURL: String
     createdAt: DateTime
+    ticketsResolvedCount: Int!
+    ticketsReportedCount: Int!
   }
 
   extend type Query {
