@@ -5,7 +5,6 @@ const userSchema = /* GraphQL */ `
     lastname: String!
     email: String!
     photoURL: String
-    sessionToken: String!
     createdAt: DateTime
   }
 

@@ -31,15 +31,7 @@ startStandaloneServer(server, {
       return { user: null };
     }
 
-    user = {
-      id: data?.id,
-      name: data?.name,
-      lastname: data?.lastname,
-      email: data?.email,
-      photoURL: data?.photoURL,
-      sessionToken: data?.sessionToken,
-      createdAt: data?.createdAt,
-    };
+    user = data;
 
     return { user };
   },

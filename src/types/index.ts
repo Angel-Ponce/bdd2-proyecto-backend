@@ -10,7 +10,6 @@ interface User {
   lastname: string;
   email: string;
   photoURL: string;
-  sessionToken: string;
   createdAt: Date;
 }
 
