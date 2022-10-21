@@ -38,7 +38,6 @@ const express4_1 = require("@apollo/server/express4");
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
-const body_parser_1 = __importDefault(require("body-parser"));
 const initServer = async () => {
     const app = (0, express_1.default)();
     const httpServer = http_1.default.createServer(app);
@@ -54,7 +53,7 @@ const initServer = async () => {
         introspection: process.env.NODE_ENV == "production",
     });
     await server.start();
-    app.use((0, cors_1.default)(), body_parser_1.default.json(), (0, express4_1.expressMiddleware)(server));
+    app.use((0, cors_1.default)(), express_1.default.json(), (0, express4_1.expressMiddleware)(server));
     await new Promise((resolve) => httpServer.listen({ port: process.env.PORT || 4010 }, resolve));
 };
 initServer();

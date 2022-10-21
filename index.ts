@@ -1,7 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import { ApolloServer } from "@apollo/server";
-import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "@schemas/index";
 import { resolvers } from "@resolvers/index";
 import { makeExecutableSchema } from "graphql-tools";
@@ -33,7 +32,7 @@ const initServer = async () => {
 
   await server.start();
 
-  app.use(cors(), bodyParser.json(), expressMiddleware(server));
+  app.use(cors(), express.json(), expressMiddleware(server));
 
   await new Promise((resolve: any) =>
     httpServer.listen({ port: process.env.PORT || 4010 }, resolve)
