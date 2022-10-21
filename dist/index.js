@@ -51,7 +51,7 @@ const initServer = async () => {
             (0, default_1.ApolloServerPluginLandingPageLocalDefault)(),
             (0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer }),
         ],
-        introspection: process.env.NODE_ENV !== "production",
+        introspection: process.env.NODE_ENV == "production",
     });
     await server.start();
     app.use((0, cors_1.default)(), body_parser_1.default.json(), (0, express4_1.expressMiddleware)(server));
