@@ -10,6 +10,7 @@ const userSchema = /* GraphQL */ `
 
   extend type Query {
     users: [User!]!
+    user(input: IdInput!): User!
   }
 `;
 
