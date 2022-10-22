@@ -28,18 +28,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
+require("reflect-metadata");
 const server_1 = require("@apollo/server");
 const index_1 = require("./src/schemas/index");
 const index_2 = require("./src/resolvers/index");
 const graphql_tools_1 = require("graphql-tools");
-const default_1 = require("@apollo/server/plugin/landingPage/default");
 const drainHttpServer_1 = require("@apollo/server/plugin/drainHttpServer");
 const express4_1 = require("@apollo/server/express4");
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const _db_1 = require("./src/db");
 const initServer = async () => {
+    await _db_1.db.initialize();
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)());
     app.use(body_parser_1.default.json());
@@ -50,7 +52,7 @@ const initServer = async () => {
             resolvers: index_2.resolvers,
         }),
         plugins: [
-            (0, default_1.ApolloServerPluginLandingPageProductionDefault)(),
+            // ApolloServerPluginLandingPageProductionDefault(),
             (0, drainHttpServer_1.ApolloServerPluginDrainHttpServer)({ httpServer }),
         ],
         introspection: true,

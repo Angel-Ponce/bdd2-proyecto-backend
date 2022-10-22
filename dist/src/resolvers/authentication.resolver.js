@@ -10,7 +10,7 @@ const authenticationResolver = {
     },
     Mutation: {
         login: async (_o, params, _context) => {
-            const [data, error] = await (0, _helpers_1.exec)("login ?, ?", [params.input.email || "", params.input.password || ""], false);
+            const [data, error] = await (0, _helpers_1.exec)("login @0, @1", [params.input.email || "", params.input.password || ""], false);
             if (error)
                 throw error;
             return {

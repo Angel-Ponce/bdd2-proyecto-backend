@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
+import "reflect-metadata";
 import { ApolloServer } from "@apollo/server";
 import { typeDefs } from "@schemas/index";
 import { resolvers } from "@resolvers/index";
@@ -13,8 +14,10 @@ import express from "express";
 import http from "http";
 import cors from "cors";
 import bodyParser from "body-parser";
+import { db } from "@db";
 
 const initServer = async () => {
+  await db.initialize();
   const app = express();
   app.use(cors());
   app.use(bodyParser.json());
@@ -27,7 +30,7 @@ const initServer = async () => {
       resolvers,
     }),
     plugins: [
-      ApolloServerPluginLandingPageProductionDefault(),
+      // ApolloServerPluginLandingPageProductionDefault(),
       ApolloServerPluginDrainHttpServer({ httpServer }),
     ],
     introspection: true,

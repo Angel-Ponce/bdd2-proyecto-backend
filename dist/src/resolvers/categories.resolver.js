@@ -16,7 +16,7 @@ const categoryResolver = {
         category: async (_o, args, context) => {
             if (!context.user)
                 throw new graphql_1.GraphQLError("Sin autenticación");
-            const [data, error] = await (0, _helpers_1.exec)("getCategoryById ?", [args.input.id || 0], false);
+            const [data, error] = await (0, _helpers_1.exec)("getCategoryById @0", [args.input.id || 0], false);
             if (error)
                 throw error;
             return data;
@@ -26,10 +26,10 @@ const categoryResolver = {
         createCategory: async (_o, args, context) => {
             if (!context.user)
                 throw new graphql_1.GraphQLError("Sin autenticación");
-            const [data, error] = await (0, _helpers_1.exec)("createCategory ?", [args.input.name || ""], false);
+            const [data, error] = await (0, _helpers_1.exec)("createCategory @0", [args.input.name || ""], false);
             if (error)
                 throw error;
-            const [category, error2] = await (0, _helpers_1.exec)("getCategoryById ?", [data.id || 0], false);
+            const [category, error2] = await (0, _helpers_1.exec)("getCategoryById @0", [data.id || 0], false);
             if (error2)
                 throw error2;
             return category;
@@ -37,10 +37,10 @@ const categoryResolver = {
         updateCategory: async (_o, args, context) => {
             if (!context.user)
                 throw new graphql_1.GraphQLError("Sin autenticación");
-            const [data, error] = await (0, _helpers_1.exec)("updateCategory ?, ?", [args.input.id || 0, args.input.name || ""], false);
+            const [data, error] = await (0, _helpers_1.exec)("updateCategory @0, @1", [args.input.id || 0, args.input.name || ""], false);
             if (error)
                 throw error;
-            const [category, error2] = await (0, _helpers_1.exec)("getCategoryById ?", [data.id || 0], false);
+            const [category, error2] = await (0, _helpers_1.exec)("getCategoryById @0", [data.id || 0], false);
             if (error2)
                 throw error2;
             return category;
@@ -48,7 +48,7 @@ const categoryResolver = {
         deleteCategory: async (_o, args, context) => {
             if (!context.user)
                 throw new graphql_1.GraphQLError("Sin autenticación");
-            const [data, error] = await (0, _helpers_1.exec)("deleteCategory ?", [args.input.id || 0], false);
+            const [data, error] = await (0, _helpers_1.exec)("deleteCategory @0", [args.input.id || 0], false);
             if (error)
                 throw error;
             if (data.result)

@@ -20,7 +20,7 @@ const logResolver = {
         user: async (parent) => {
             if (!parent.userId)
                 return null;
-            const [user, e1] = await (0, _helpers_1.exec)("getUserById ?", [parent.userId || 0], false);
+            const [user, e1] = await (0, _helpers_1.exec)("getUserById @0", [parent.userId || 0], false);
             if (e1)
                 throw e1;
             return user;

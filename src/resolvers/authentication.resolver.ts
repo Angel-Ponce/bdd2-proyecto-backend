@@ -11,7 +11,7 @@ const authenticationResolver = {
   Mutation: {
     login: async (_o: any, params: Args, _context: Context) => {
       const [data, error] = await exec(
-        "login ?, ?",
+        "login @0, @1",
         [params.input.email || "", params.input.password || ""],
         false
       );

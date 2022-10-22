@@ -18,7 +18,7 @@ const severityResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "getSeverityById ?",
+        "getSeverityById @0",
         [args.input.id || 0],
         false
       );
@@ -34,7 +34,7 @@ const severityResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "createSeverity ?",
+        "createSeverity @0",
         [args.input.name || ""],
         false
       );
@@ -42,7 +42,7 @@ const severityResolver = {
       if (error) throw error;
 
       const [severity, error2] = await exec(
-        "getSeverityById ?",
+        "getSeverityById @0",
         [data.id || 0],
         false
       );
@@ -56,7 +56,7 @@ const severityResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "updateSeverity ?, ?",
+        "updateSeverity @0, @1",
         [args.input.id || 0, args.input.name || ""],
         false
       );
@@ -64,7 +64,7 @@ const severityResolver = {
       if (error) throw error;
 
       const [severity, error2] = await exec(
-        "getSeverityById ?",
+        "getSeverityById @0",
         [data.id || 0],
         false
       );
@@ -78,7 +78,7 @@ const severityResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "deleteSeverity ?",
+        "deleteSeverity @0",
         [args.input.id || 0],
         false
       );

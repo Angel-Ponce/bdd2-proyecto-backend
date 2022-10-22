@@ -18,7 +18,7 @@ const userResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, e1] = await exec(
-        "getUserById ?",
+        "getUserById @0",
         [args.input.id || 0],
         false
       );
@@ -34,7 +34,7 @@ const userResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, e1] = await exec(
-        "createUser ?, ?, ?, ?, ?",
+        "createUser @0, @1, @2, @3, @4",
         [
           args.input.name || "",
           args.input.lastname || "",
@@ -47,7 +47,7 @@ const userResolver = {
 
       if (e1) throw e1;
 
-      const [user, e2] = await exec("getUserById ?", [data.id || 0], false);
+      const [user, e2] = await exec("getUserById @0", [data.id || 0], false);
 
       if (e2) throw e2;
 
@@ -58,7 +58,7 @@ const userResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, e1] = await exec(
-        "updateUser ?, ?, ?, ?, ?",
+        "updateUser @0, @1, @2, @3, @4",
         [
           args.input.id || 0,
           args.input.name || null,
@@ -71,7 +71,7 @@ const userResolver = {
 
       if (e1) throw e1;
 
-      const [user, e2] = await exec("getUserById ?", [data.id || 0], false);
+      const [user, e2] = await exec("getUserById @0", [data.id || 0], false);
 
       if (e2) throw e2;
 
@@ -82,7 +82,7 @@ const userResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, e1] = await exec(
-        "deleteUser ?",
+        "deleteUser @0",
         [args.input.id || 0],
         false
       );
@@ -98,7 +98,7 @@ const userResolver = {
   User: {
     ticketsResolvedCount: async (parent: Parent) => {
       const [data, e1] = await exec(
-        "ticketsResolvedByUserId ?",
+        "ticketsResolvedByUserId @0",
         [parent.id || 0],
         false
       );
@@ -110,7 +110,7 @@ const userResolver = {
 
     ticketsReportedCount: async (parent: Parent) => {
       const [data, e1] = await exec(
-        "ticketsReportedByUserId ?",
+        "ticketsReportedByUserId @0",
         [parent.id || 0],
         false
       );

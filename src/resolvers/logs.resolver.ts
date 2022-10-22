@@ -22,7 +22,7 @@ const logResolver = {
       if (!parent.userId) return null;
 
       const [user, e1] = await exec(
-        "getUserById ?",
+        "getUserById @0",
         [parent.userId || 0],
         false
       );

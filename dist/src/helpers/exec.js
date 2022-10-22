@@ -5,18 +5,16 @@ const graphql_1 = require("graphql");
 const _db_1 = require("../db");
 const exec = (query, params = [], multiple = true) => {
     return new Promise(async (resolve) => {
-        const data = await _db_1.db.query(`exec ${query}`, {
-            replacements: params,
-        });
-        if (data?.[0]?.[0]?.error) {
-            resolve([null, new graphql_1.GraphQLError(data[0][0].error)]);
+        const data = await _db_1.db.query(`exec ${query}`, params);
+        if (data?.[0]?.error) {
+            resolve([null, new graphql_1.GraphQLError(data[0].error)]);
             return;
         }
         if (multiple) {
-            resolve([data[0], null]);
+            resolve([data, null]);
             return;
         }
-        resolve([data[0][0], null]);
+        resolve([data[0], null]);
     });
 };
 exports.exec = exec;

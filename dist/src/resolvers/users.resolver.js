@@ -16,7 +16,7 @@ const userResolver = {
         user: async (_o, args, context) => {
             if (!context.user)
                 throw new graphql_1.GraphQLError("Sin autenticación");
-            const [data, e1] = await (0, _helpers_1.exec)("getUserById ?", [args.input.id || 0], false);
+            const [data, e1] = await (0, _helpers_1.exec)("getUserById @0", [args.input.id || 0], false);
             if (e1)
                 throw e1;
             return data;
@@ -26,7 +26,7 @@ const userResolver = {
         createUser: async (_o, args, context) => {
             if (!context.user)
                 throw new graphql_1.GraphQLError("Sin autenticación");
-            const [data, e1] = await (0, _helpers_1.exec)("createUser ?, ?, ?, ?, ?", [
+            const [data, e1] = await (0, _helpers_1.exec)("createUser @0, @1, @2, @3, @4", [
                 args.input.name || "",
                 args.input.lastname || "",
                 args.input.email || "",
@@ -35,7 +35,7 @@ const userResolver = {
             ], false);
             if (e1)
                 throw e1;
-            const [user, e2] = await (0, _helpers_1.exec)("getUserById ?", [data.id || 0], false);
+            const [user, e2] = await (0, _helpers_1.exec)("getUserById @0", [data.id || 0], false);
             if (e2)
                 throw e2;
             return user;
@@ -43,7 +43,7 @@ const userResolver = {
         updateUser: async (_o, args, context) => {
             if (!context.user)
                 throw new graphql_1.GraphQLError("Sin autenticación");
-            const [data, e1] = await (0, _helpers_1.exec)("updateUser ?, ?, ?, ?, ?", [
+            const [data, e1] = await (0, _helpers_1.exec)("updateUser @0, @1, @2, @3, @4", [
                 args.input.id || 0,
                 args.input.name || null,
                 args.input.lastname || null,
@@ -52,7 +52,7 @@ const userResolver = {
             ], false);
             if (e1)
                 throw e1;
-            const [user, e2] = await (0, _helpers_1.exec)("getUserById ?", [data.id || 0], false);
+            const [user, e2] = await (0, _helpers_1.exec)("getUserById @0", [data.id || 0], false);
             if (e2)
                 throw e2;
             return user;
@@ -60,7 +60,7 @@ const userResolver = {
         deleteUser: async (_o, args, context) => {
             if (!context.user)
                 throw new graphql_1.GraphQLError("Sin autenticación");
-            const [data, e1] = await (0, _helpers_1.exec)("deleteUser ?", [args.input.id || 0], false);
+            const [data, e1] = await (0, _helpers_1.exec)("deleteUser @0", [args.input.id || 0], false);
             if (e1)
                 throw e1;
             if (data.result)
@@ -70,13 +70,13 @@ const userResolver = {
     },
     User: {
         ticketsResolvedCount: async (parent) => {
-            const [data, e1] = await (0, _helpers_1.exec)("ticketsResolvedByUserId ?", [parent.id || 0], false);
+            const [data, e1] = await (0, _helpers_1.exec)("ticketsResolvedByUserId @0", [parent.id || 0], false);
             if (e1)
                 throw e1;
             return data.count;
         },
         ticketsReportedCount: async (parent) => {
-            const [data, e1] = await (0, _helpers_1.exec)("ticketsReportedByUserId ?", [parent.id || 0], false);
+            const [data, e1] = await (0, _helpers_1.exec)("ticketsReportedByUserId @0", [parent.id || 0], false);
             if (e1)
                 throw e1;
             return data.count;

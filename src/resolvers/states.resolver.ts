@@ -18,7 +18,7 @@ const stateResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "getStateById ?",
+        "getStateById @0",
         [args.input.id || 0],
         false
       );
@@ -34,7 +34,7 @@ const stateResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "createState ?",
+        "createState @0",
         [args.input.name || ""],
         false
       );
@@ -42,7 +42,7 @@ const stateResolver = {
       if (error) throw error;
 
       const [state, error2] = await exec(
-        "getStateById ?",
+        "getStateById @0",
         [data.id || 0],
         false
       );
@@ -56,7 +56,7 @@ const stateResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "updateState ?, ?",
+        "updateState @0, @1",
         [args.input.id || 0, args.input.name || ""],
         false
       );
@@ -64,7 +64,7 @@ const stateResolver = {
       if (error) throw error;
 
       const [state, error2] = await exec(
-        "getStateById ?",
+        "getStateById @0",
         [data.id || 0],
         false
       );
@@ -78,7 +78,7 @@ const stateResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "deleteState ?",
+        "deleteState @0",
         [args.input.id || 0],
         false
       );

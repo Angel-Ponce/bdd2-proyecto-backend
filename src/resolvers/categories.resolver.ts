@@ -18,7 +18,7 @@ const categoryResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "getCategoryById ?",
+        "getCategoryById @0",
         [args.input.id || 0],
         false
       );
@@ -34,7 +34,7 @@ const categoryResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "createCategory ?",
+        "createCategory @0",
         [args.input.name || ""],
         false
       );
@@ -42,7 +42,7 @@ const categoryResolver = {
       if (error) throw error;
 
       const [category, error2] = await exec(
-        "getCategoryById ?",
+        "getCategoryById @0",
         [data.id || 0],
         false
       );
@@ -56,7 +56,7 @@ const categoryResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "updateCategory ?, ?",
+        "updateCategory @0, @1",
         [args.input.id || 0, args.input.name || ""],
         false
       );
@@ -64,7 +64,7 @@ const categoryResolver = {
       if (error) throw error;
 
       const [category, error2] = await exec(
-        "getCategoryById ?",
+        "getCategoryById @0",
         [data.id || 0],
         false
       );
@@ -78,7 +78,7 @@ const categoryResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, error] = await exec(
-        "deleteCategory ?",
+        "deleteCategory @0",
         [args.input.id || 0],
         false
       );
