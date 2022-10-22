@@ -38,11 +38,10 @@ const express4_1 = require("@apollo/server/express4");
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
-const body_parser_1 = __importDefault(require("body-parser"));
 const initServer = async () => {
     const app = (0, express_1.default)();
     app.use((0, cors_1.default)());
-    app.use(body_parser_1.default.json());
+    // app.use(bodyParser.json());
     const httpServer = http_1.default.createServer(app);
     const server = new server_1.ApolloServer({
         schema: (0, graphql_tools_1.makeExecutableSchema)({

@@ -17,7 +17,7 @@ import bodyParser from "body-parser";
 const initServer = async () => {
   const app = express();
   app.use(cors());
-  app.use(bodyParser.json());
+  // app.use(bodyParser.json());
 
   const httpServer = http.createServer(app);
 
