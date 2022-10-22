@@ -6,7 +6,7 @@ import { resolvers } from "@resolvers/index";
 import { makeExecutableSchema } from "graphql-tools";
 import { exec } from "@helpers";
 import { User } from "@types";
-import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
+import { ApolloServerPluginLandingPageProductionDefault } from "@apollo/server/plugin/landingPage/default";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { expressMiddleware } from "@apollo/server/express4";
 import express from "express";
@@ -17,7 +17,7 @@ import bodyParser from "body-parser";
 const initServer = async () => {
   const app = express();
   app.use(cors());
-  // app.use(bodyParser.json());
+  app.use(bodyParser.json());
 
   const httpServer = http.createServer(app);
 
@@ -27,7 +27,7 @@ const initServer = async () => {
       resolvers,
     }),
     plugins: [
-      ApolloServerPluginLandingPageLocalDefault(),
+      ApolloServerPluginLandingPageProductionDefault(),
       ApolloServerPluginDrainHttpServer({ httpServer }),
     ],
     introspection: true,
