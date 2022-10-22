@@ -35,7 +35,7 @@ const initServer = async () => {
 
   await server.start();
 
-  app.use("graphql", expressMiddleware(server));
+  app.use("/graphql", expressMiddleware(server));
 
   await new Promise((resolve: any) =>
     httpServer.listen({ port: process.env.PORT || 4010 }, resolve)
