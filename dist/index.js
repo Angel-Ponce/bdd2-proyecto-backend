@@ -41,6 +41,8 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const initServer = async () => {
     const app = (0, express_1.default)();
+    app.use((0, cors_1.default)());
+    app.use(body_parser_1.default.json());
     const httpServer = http_1.default.createServer(app);
     const server = new server_1.ApolloServer({
         schema: (0, graphql_tools_1.makeExecutableSchema)({
@@ -54,7 +56,7 @@ const initServer = async () => {
         introspection: true,
     });
     await server.start();
-    app.use((0, cors_1.default)(), body_parser_1.default.json(), (0, express4_1.expressMiddleware)(server));
+    app.use("graphql", (0, express4_1.expressMiddleware)(server));
     await new Promise((resolve) => httpServer.listen({ port: process.env.PORT || 4010 }, resolve));
 };
 initServer();
