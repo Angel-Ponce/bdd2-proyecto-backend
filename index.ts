@@ -1,15 +1,13 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import "reflect-metadata";
-import { ApolloServer } from "@apollo/server";
+import { ApolloServer } from "apollo-server-express";
 import { typeDefs } from "@schemas/index";
 import { resolvers } from "@resolvers/index";
 import { makeExecutableSchema } from "graphql-tools";
 import { exec } from "@helpers";
 import { User } from "@types";
-import { ApolloServerPluginLandingPageProductionDefault } from "@apollo/server/plugin/landingPage/default";
-import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
-import { expressMiddleware } from "@apollo/server/express4";
+import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import express from "express";
 import http from "http";
 import cors from "cors";
@@ -29,16 +27,23 @@ const initServer = async () => {
       typeDefs,
       resolvers,
     }),
-    plugins: [
-      // ApolloServerPluginLandingPageProductionDefault(),
-      ApolloServerPluginDrainHttpServer({ httpServer }),
-    ],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
     introspection: true,
+    context: async ({ req }) => {
+      const token = req.headers.authorization || "";
+      const [data, error] = await exec("getUserByToken @0", [token], false);
+      let user: User | null = null;
+      if (error) {
+        return { user: null };
+      }
+      user = data;
+      return { user };
+    },
   });
 
   await server.start();
 
-  app.use("/graphql", expressMiddleware(server));
+  server.applyMiddleware({ app });
 
   await new Promise((resolve: any) =>
     httpServer.listen({ port: process.env.PORT || 4010 }, resolve)
