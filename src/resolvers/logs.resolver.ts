@@ -15,9 +15,14 @@ const logResolver = {
 
       if (e2) throw e2;
 
+      const [ticketChangeStatusLogs, e3] = await exec("allTicketChangesStatus");
+
+      if (e3) throw e3;
+
       return {
         sessionLogs,
         deletedTicketsLogs,
+        ticketChangeStatusLogs,
       };
     },
   },
@@ -109,6 +114,44 @@ const logResolver = {
       if (error) throw error;
 
       return data;
+    },
+  },
+
+  TicketChangeStatusLog: {
+    ticket: async (parent: Parent) => {
+      const [ticket, error] = await exec(
+        "getTicketById @0",
+        [parent.ticketId || 0],
+        false
+      );
+
+      if (error) throw error;
+
+      return ticket;
+    },
+
+    status: async (parent: Parent) => {
+      const [status, error] = await exec(
+        "getStateById @0",
+        [parent.statusId],
+        false
+      );
+
+      if (error) throw error;
+
+      return status;
+    },
+
+    user: async (parent: Parent) => {
+      const [user, error] = await exec(
+        "getUserById @0",
+        [parent.userId],
+        false
+      );
+
+      if (error) throw error;
+
+      return user;
     },
   },
 };

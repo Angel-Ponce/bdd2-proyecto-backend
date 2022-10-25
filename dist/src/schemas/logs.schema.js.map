@@ -1,1 +1,1 @@
-{"version":3,"file":"logs.schema.js","sourceRoot":"","sources":["../../../src/schemas/logs.schema.ts"],"names":[],"mappings":";;;AAAA,MAAM,SAAS,GAAG,aAAa,CAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAiC/B,CAAC;AAEO,8BAAS"}
+{"version":3,"file":"logs.schema.js","sourceRoot":"","sources":["../../../src/schemas/logs.schema.ts"],"names":[],"mappings":";;;AAAA,MAAM,SAAS,GAAG,aAAa,CAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CA0C/B,CAAC;AAEO,8BAAS"}
