@@ -6,6 +6,7 @@ import { logSchema } from "@schemas/logs.schema";
 import { userSchema } from "@schemas/users.schema";
 import { ticketSchema } from "@schemas/tickets.schema";
 import { ratingSchema } from "@schemas/ratings.schema";
+import { messageSchema } from "@schemas/messages.schema";
 
 const main = /* GraphQL */ `
   type Message {
@@ -35,6 +36,7 @@ const typeDefs = [
   userSchema,
   ticketSchema,
   ratingSchema,
+  messageSchema,
 ];
 
 export { typeDefs };

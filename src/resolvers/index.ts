@@ -6,6 +6,7 @@ import { logResolver } from "@resolvers/logs.resolver";
 import { userResolver } from "@resolvers/users.resolver";
 import { ticketResolver } from "@resolvers/tickets.resolver";
 import { ratingResolver } from "@resolvers/ratings.resolver";
+import { messageResolver } from "@resolvers/messages.resolver";
 
 const main = {
   Query: {
@@ -26,6 +27,7 @@ const resolvers = [
   userResolver,
   ticketResolver,
   ratingResolver,
+  messageResolver,
 ];
 
 export { resolvers };
