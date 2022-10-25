@@ -1,3 +1,4 @@
+import { userResolver } from "@resolvers/users.resolver";
 import { GraphQLError } from "graphql";
 import { Args, Context, Parent } from "@types";
 import { exec } from "@helpers";
@@ -89,7 +90,36 @@ const ticketResolver = {
       return data;
     },
   },
-  Mutation: {},
+  Mutation: {
+    createTicket: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, e1] = await exec(
+        "createTicket @0, @1, @2, @3, @4, @5",
+        [
+          args.input.name || "",
+          args.input.userReporterId || 0,
+          args.input.userResolverId || 0,
+          args.input.categoryId || 0,
+          args.input.statusId || 0,
+          args.input.severityId || 0,
+        ],
+        false
+      );
+
+      if (e1) throw e1;
+
+      const [ticket, e2] = await exec(
+        "getTicketById @0",
+        [data.id || 0],
+        false
+      );
+
+      if (e2) throw e2;
+
+      return ticket;
+    },
+  },
 };
 
 export { ticketResolver };

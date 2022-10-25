@@ -12,9 +12,22 @@ const ticketSchema = /* GraphQL */ `
     createdAt: DateTime
   }
 
+  input CreateTicketInput {
+    name: String!
+    userReporterId: Int!
+    userResolverId: Int!
+    categoryId: Int!
+    statusId: Int!
+    severityId: Int!
+  }
+
   extend type Query {
     tickets: [Ticket!]!
     ticket(input: IdInput!): Ticket!
+  }
+
+  extend type Mutation {
+    createTicket(input: CreateTicketInput!): Ticket!
   }
 `;
 
