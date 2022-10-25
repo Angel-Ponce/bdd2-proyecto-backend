@@ -65,6 +65,28 @@ const ratingResolver = {
 
       return rating;
     },
+
+    updateRating: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, e1] = await exec(
+        "updateTicketRating @0, @1",
+        [args.input.id, args.input.rating],
+        false
+      );
+
+      if (e1) throw e1;
+
+      const [rating, e2] = await exec(
+        "getTicketRatingById @0",
+        [data.id || 0],
+        false
+      );
+
+      if (e2) throw e2;
+
+      return rating;
+    },
   },
 };
 
