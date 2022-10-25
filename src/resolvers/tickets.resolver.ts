@@ -13,6 +13,20 @@ const ticketResolver = {
 
       return data;
     },
+
+    ticket: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, error] = await exec(
+        "getTicketById @0",
+        [args.input.id],
+        false
+      );
+
+      if (error) throw error;
+
+      return data;
+    },
   },
   Ticket: {
     userReporter: async (parent: Parent) => {

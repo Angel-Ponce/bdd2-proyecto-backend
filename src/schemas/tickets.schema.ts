@@ -14,6 +14,7 @@ const ticketSchema = /* GraphQL */ `
 
   extend type Query {
     tickets: [Ticket!]!
+    ticket(input: IdInput!): Ticket!
   }
 `;
 
