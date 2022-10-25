@@ -9,8 +9,23 @@ const logSchema = /* GraphQL */ `
     createdAt: DateTime
   }
 
+  type DeletedTicketsLog {
+    id: Int!
+    ticketId: Int!
+    ticketName: String!
+    ticketUserReporter: User!
+    ticketUserResolver: User!
+    ticketCategory: Category!
+    ticketStatus: State!
+    ticketSeverity: Severity!
+    ticketCreatedAt: DateTime
+    user: User!
+    deletedAt: DateTime
+  }
+
   type Logs {
     sessionLogs: [SessionLog!]!
+    deletedTicketsLogs: [DeletedTicketsLog!]!
   }
 
   extend type Query {
