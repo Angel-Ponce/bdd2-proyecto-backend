@@ -42,6 +42,30 @@ const ratingResolver = {
       return user;
     },
   },
+
+  Mutation: {
+    createRating: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, e1] = await exec(
+        "createTicketRating @0, @1, @2",
+        [args.input.rating, args.input.ticketId, args.input.userId],
+        false
+      );
+
+      if (e1) throw e1;
+
+      const [rating, e2] = await exec(
+        "getTicketRatingById @0",
+        [data.id || 0],
+        false
+      );
+
+      if (e2) throw e2;
+
+      return rating;
+    },
+  },
 };
 
 export { ratingResolver };
