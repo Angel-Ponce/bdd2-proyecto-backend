@@ -5,6 +5,7 @@ import { stateResolver } from "@resolvers/states.resolver";
 import { logResolver } from "@resolvers/logs.resolver";
 import { userResolver } from "@resolvers/users.resolver";
 import { ticketResolver } from "@resolvers/tickets.resolver";
+import { ratingResolver } from "@resolvers/ratings.resolver";
 
 const main = {
   Query: {
@@ -24,6 +25,7 @@ const resolvers = [
   logResolver,
   userResolver,
   ticketResolver,
+  ratingResolver,
 ];
 
 export { resolvers };
