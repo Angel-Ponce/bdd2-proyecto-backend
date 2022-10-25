@@ -1,3 +1,4 @@
+import { GraphQLError } from "graphql";
 import { exec } from "@helpers";
 import { Args, Context } from "@types";
 
@@ -23,7 +24,26 @@ const authenticationResolver = {
       };
     },
 
-    changePassword: async () => ({ message: "Unavailable" }),
+    changePassword: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, error] = await exec(
+        "changePassword @0, @1, @2",
+        [args.input.id, args.input.oldPassword, args.input.newPassword],
+        false
+      );
+
+      if (error) throw error;
+
+      if (data.result)
+        return {
+          message: "La contraseña se ha cambiado correctamente.",
+        };
+
+      return {
+        message: "La contraseña no se ha cambiado.",
+      };
+    },
   },
 };
 
