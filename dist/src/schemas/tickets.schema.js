@@ -42,6 +42,7 @@ const ticketSchema = /* GraphQL */ `
   extend type Mutation {
     createTicket(input: CreateTicketInput!): Ticket!
     updateTicket(input: UpdateTicketInput!): Ticket!
+    deleteTicket(input: IdInput!): Message!
   }
 `;
 exports.ticketSchema = ticketSchema;

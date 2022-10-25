@@ -93,6 +93,16 @@ const ticketResolver = {
                 throw e2;
             return ticket;
         },
+        deleteTicket: async (_o, args, context) => {
+            if (!context.user)
+                throw new graphql_1.GraphQLError("Sin autenticación");
+            const [data, error] = await (0, _helpers_1.exec)("deleteTicket @0, @1", [args.input.id || 0, context.user.id || 0], false);
+            if (error)
+                throw error;
+            if (data.result)
+                return { message: "Ticket eliminado correctamente." };
+            return { message: "Ticket no eliminado." };
+        },
     },
 };
 exports.ticketResolver = ticketResolver;

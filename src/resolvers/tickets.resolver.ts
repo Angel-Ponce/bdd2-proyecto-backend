@@ -150,6 +150,22 @@ const ticketResolver = {
 
       return ticket;
     },
+
+    deleteTicket: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, error] = await exec(
+        "deleteTicket @0, @1",
+        [args.input.id || 0, context.user.id || 0],
+        false
+      );
+
+      if (error) throw error;
+
+      if (data.result) return { message: "Ticket eliminado correctamente." };
+
+      return { message: "Ticket no eliminado." };
+    },
   },
 };
 
