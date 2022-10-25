@@ -7,7 +7,10 @@ import { resolvers } from "@resolvers/index";
 import { makeExecutableSchema } from "graphql-tools";
 import { exec } from "@helpers";
 import { User } from "@types";
-import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
+import {
+  ApolloServerPluginDrainHttpServer,
+  ApolloServerPluginLandingPageGraphQLPlayground,
+} from "apollo-server-core";
 import express from "express";
 import http from "http";
 import cors from "cors";
@@ -27,7 +30,10 @@ const initServer = async () => {
       typeDefs,
       resolvers,
     }),
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    plugins: [
+      ApolloServerPluginDrainHttpServer({ httpServer }),
+      ApolloServerPluginLandingPageGraphQLPlayground(),
+    ],
     introspection: true,
     context: async ({ req }) => {
       const token = req.headers.authorization || "";
