@@ -27,6 +27,7 @@ const ratingSchema = /* GraphQL */ `
   extend type Mutation {
     createRating(input: CreateRatingInput): Rating!
     updateRating(input: UpdateRatingInput): Rating!
+    deleteRating(input: IdInput!): Message!
   }
 `;
 

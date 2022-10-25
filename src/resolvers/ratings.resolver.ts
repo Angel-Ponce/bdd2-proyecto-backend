@@ -87,6 +87,27 @@ const ratingResolver = {
 
       return rating;
     },
+
+    deleteRating: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, error] = await exec(
+        "deleteTicketRating @0",
+        [args.input.id],
+        false
+      );
+
+      if (error) throw error;
+
+      if (data.result)
+        return {
+          message: "Calificación eliminada correctamente.",
+        };
+
+      return {
+        message: "Calificación no eliminada.",
+      };
+    },
   },
 };
 
