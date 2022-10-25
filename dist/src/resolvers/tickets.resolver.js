@@ -76,13 +76,15 @@ const ticketResolver = {
         updateTicket: async (_o, args, context) => {
             if (!context.user)
                 throw new graphql_1.GraphQLError("Sin autenticación");
-            const [data, e1] = await (0, _helpers_1.exec)("updateTicket @0, @1, @2, @3, @4, @5", [
+            const [data, e1] = await (0, _helpers_1.exec)("updateTicket @0, @1, @2, @3, @4, @5, @6, @7", [
                 args.input.id || 0,
                 args.input.name || null,
                 args.input.userReporterId || null,
                 args.input.userResolverId || null,
                 args.input.categoryId || null,
+                args.input.statusId || null,
                 args.input.severityId || null,
+                context.user.id || 0,
             ], false);
             if (e1)
                 throw e1;
