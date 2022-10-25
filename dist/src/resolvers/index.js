@@ -8,6 +8,7 @@ const states_resolver_1 = require("./states.resolver");
 const logs_resolver_1 = require("./logs.resolver");
 const users_resolver_1 = require("./users.resolver");
 const tickets_resolver_1 = require("./tickets.resolver");
+const ratings_resolver_1 = require("./ratings.resolver");
 const main = {
     Query: {
         _: () => "",
@@ -25,6 +26,7 @@ const resolvers = [
     logs_resolver_1.logResolver,
     users_resolver_1.userResolver,
     tickets_resolver_1.ticketResolver,
+    ratings_resolver_1.ratingResolver,
 ];
 exports.resolvers = resolvers;
 //# sourceMappingURL=index.js.map

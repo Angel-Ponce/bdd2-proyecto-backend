@@ -25,7 +25,6 @@ const authenticationSchema = /* GraphQL */ `
 
   extend type Mutation {
     login(input: InputLogin!): Token!
-
     changePassword(input: ChangePasswordInput!): Message!
   }
 `;
