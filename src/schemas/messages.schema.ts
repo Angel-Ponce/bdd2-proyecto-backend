@@ -9,8 +9,18 @@ const messageSchema = /* GraphQL */ `
     createdAt: DateTime
   }
 
+  input CreateChatMessageInput {
+    message: String!
+    userId: Int!
+    ticketId: Int!
+  }
+
   extend type Query {
     messages(input: IdInput!): [ChatMessage!]!
+  }
+
+  extend type Mutation {
+    createMessage(input: CreateChatMessageInput!): ChatMessage!
   }
 `;
 
