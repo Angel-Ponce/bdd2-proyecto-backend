@@ -7,6 +7,7 @@ const severities_schema_1 = require("./severities.schema");
 const states_schema_1 = require("./states.schema");
 const logs_schema_1 = require("./logs.schema");
 const users_schema_1 = require("./users.schema");
+const tickets_schema_1 = require("./tickets.schema");
 const main = /* GraphQL */ `
   type Message {
     message: String!
@@ -32,6 +33,7 @@ const typeDefs = [
     states_schema_1.stateSchema,
     logs_schema_1.logSchema,
     users_schema_1.userSchema,
+    tickets_schema_1.ticketSchema,
 ];
 exports.typeDefs = typeDefs;
 //# sourceMappingURL=index.js.map

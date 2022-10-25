@@ -7,6 +7,7 @@ const severities_resolver_1 = require("./severities.resolver");
 const states_resolver_1 = require("./states.resolver");
 const logs_resolver_1 = require("./logs.resolver");
 const users_resolver_1 = require("./users.resolver");
+const tickets_resolver_1 = require("./tickets.resolver");
 const main = {
     Query: {
         _: () => "",
@@ -23,6 +24,7 @@ const resolvers = [
     states_resolver_1.stateResolver,
     logs_resolver_1.logResolver,
     users_resolver_1.userResolver,
+    tickets_resolver_1.ticketResolver,
 ];
 exports.resolvers = resolvers;
 //# sourceMappingURL=index.js.map

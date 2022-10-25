@@ -51,7 +51,10 @@ const initServer = async () => {
             typeDefs: index_1.typeDefs,
             resolvers: index_2.resolvers,
         }),
-        plugins: [(0, apollo_server_core_1.ApolloServerPluginDrainHttpServer)({ httpServer })],
+        plugins: [
+            (0, apollo_server_core_1.ApolloServerPluginDrainHttpServer)({ httpServer }),
+            (0, apollo_server_core_1.ApolloServerPluginLandingPageGraphQLPlayground)(),
+        ],
         introspection: true,
         context: async ({ req }) => {
             const token = req.headers.authorization || "";
