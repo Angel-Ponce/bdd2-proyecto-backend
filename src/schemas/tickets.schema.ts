@@ -1,3 +1,20 @@
-const ticketSchema = /* GraphQL */ ``;
+const ticketSchema = /* GraphQL */ `
+  scalar DateTime
+
+  type Ticket {
+    id: Int!
+    name: String!
+    userReporter: User!
+    userResolver: User!
+    category: Category!
+    status: State!
+    severity: Severity!
+    createdAt: DateTime
+  }
+
+  extend type Query {
+    tickets: [Ticket!]!
+  }
+`;
 
 export { ticketSchema };
