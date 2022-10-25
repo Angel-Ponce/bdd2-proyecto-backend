@@ -124,14 +124,16 @@ const ticketResolver = {
       if (!context.user) throw new GraphQLError("Sin autenticación");
 
       const [data, e1] = await exec(
-        "updateTicket @0, @1, @2, @3, @4, @5",
+        "updateTicket @0, @1, @2, @3, @4, @5, @6, @7",
         [
           args.input.id || 0,
           args.input.name || null,
           args.input.userReporterId || null,
           args.input.userResolverId || null,
           args.input.categoryId || null,
+          args.input.statusId || null,
           args.input.severityId || null,
+          context.user.id || 0,
         ],
         false
       );

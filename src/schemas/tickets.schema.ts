@@ -27,6 +27,7 @@ const ticketSchema = /* GraphQL */ `
     userReporterId: Int
     userResolverId: Int
     categoryId: Int
+    statusId: Int
     severityId: Int
   }
 
