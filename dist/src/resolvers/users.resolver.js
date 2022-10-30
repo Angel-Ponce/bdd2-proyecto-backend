@@ -70,13 +70,13 @@ const userResolver = {
     },
     User: {
         ticketsResolvedCount: async (parent) => {
-            const [data, e1] = await (0, _helpers_1.exec)("ticketsResolvedByUserId @0", [parent.id || 0], false);
+            const [data, e1] = await (0, _helpers_1.select)("dbo.ticketsResolvedByUserId (@0) AS count", [parent.id || 0], false);
             if (e1)
                 throw e1;
             return data.count;
         },
         ticketsReportedCount: async (parent) => {
-            const [data, e1] = await (0, _helpers_1.exec)("ticketsReportedByUserId @0", [parent.id || 0], false);
+            const [data, e1] = await (0, _helpers_1.select)("dbo.ticketsReportedByUserId (@0) AS count", [parent.id || 0], false);
             if (e1)
                 throw e1;
             return data.count;

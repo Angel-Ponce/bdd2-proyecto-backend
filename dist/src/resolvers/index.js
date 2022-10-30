@@ -10,6 +10,7 @@ const users_resolver_1 = require("./users.resolver");
 const tickets_resolver_1 = require("./tickets.resolver");
 const ratings_resolver_1 = require("./ratings.resolver");
 const messages_resolver_1 = require("./messages.resolver");
+const reports_resolver_1 = require("./reports.resolver");
 const main = {
     Query: {
         _: () => "",
@@ -29,6 +30,7 @@ const resolvers = [
     tickets_resolver_1.ticketResolver,
     ratings_resolver_1.ratingResolver,
     messages_resolver_1.messageResolver,
+    reports_resolver_1.reportResolver,
 ];
 exports.resolvers = resolvers;
 //# sourceMappingURL=index.js.map
