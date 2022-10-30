@@ -7,6 +7,7 @@ import { userResolver } from "@resolvers/users.resolver";
 import { ticketResolver } from "@resolvers/tickets.resolver";
 import { ratingResolver } from "@resolvers/ratings.resolver";
 import { messageResolver } from "@resolvers/messages.resolver";
+import { reportResolver } from "@resolvers/reports.resolver";
 
 const main = {
   Query: {
@@ -28,6 +29,7 @@ const resolvers = [
   ticketResolver,
   ratingResolver,
   messageResolver,
+  reportResolver,
 ];
 
 export { resolvers };
