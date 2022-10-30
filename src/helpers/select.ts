@@ -1,9 +1,9 @@
-import { GraphQLError } from "graphql";
 import { db } from "@db";
+import { GraphQLError } from "graphql";
 
-const exec = (query: string, params: string[] = [], multiple = true) => {
+const select = async (query: string, params: string[], multiple = true) => {
   return new Promise<[any | null, GraphQLError | null]>(async (resolve) => {
-    const data = await db.query(`EXEC ${query}`, params);
+    const data = await db.query(`SELECT ${query}`, params);
 
     if (data?.[0]?.error) {
       resolve([null, new GraphQLError(data[0].error)]);
@@ -19,4 +19,4 @@ const exec = (query: string, params: string[] = [], multiple = true) => {
   });
 };
 
-export { exec };
+export { select };

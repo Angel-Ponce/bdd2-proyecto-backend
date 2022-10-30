@@ -1,6 +1,6 @@
 import { GraphQLError } from "graphql";
 import { Args, Context, Parent } from "@types";
-import { exec } from "@helpers";
+import { exec, select } from "@helpers";
 
 const userResolver = {
   Query: {
@@ -97,8 +97,8 @@ const userResolver = {
 
   User: {
     ticketsResolvedCount: async (parent: Parent) => {
-      const [data, e1] = await exec(
-        "ticketsResolvedByUserId @0",
+      const [data, e1] = await select(
+        "dbo.ticketsResolvedByUserId (@0) AS count",
         [parent.id || 0],
         false
       );
@@ -109,8 +109,8 @@ const userResolver = {
     },
 
     ticketsReportedCount: async (parent: Parent) => {
-      const [data, e1] = await exec(
-        "ticketsReportedByUserId @0",
+      const [data, e1] = await select(
+        "dbo.ticketsReportedByUserId (@0) AS count",
         [parent.id || 0],
         false
       );
