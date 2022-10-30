@@ -93,6 +93,23 @@ const userResolver = {
 
       return { message: "Ususario no eliminado" };
     },
+
+    restoreUser: async (_o: any, args: Args, context: Context) => {
+      if (!context.user) throw new GraphQLError("Sin autenticación");
+
+      const [data, e1] = await exec(
+        "restoreUser @0",
+        [args.input.id || 0],
+        false
+      );
+
+      if (e1) throw e1;
+
+      if (data.result)
+        return { message: "Usuario restablecido correctamente." };
+
+      return { message: "Ususario no restablecido" };
+    },
   },
 
   User: {

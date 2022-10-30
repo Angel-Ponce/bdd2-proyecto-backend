@@ -5,6 +5,7 @@ const userSchema = /* GraphQL */ `
     lastname: String!
     email: String!
     photoURL: String
+    active: Boolean
     createdAt: DateTime
     ticketsResolvedCount: Int!
     ticketsReportedCount: Int!
@@ -35,6 +36,7 @@ const userSchema = /* GraphQL */ `
     createUser(input: CreateUserInput!): User!
     updateUser(input: UpdateUserInput!): User!
     deleteUser(input: IdInput!): Message!
+    restoreUser(input: IdInput!): Message!
   }
 `;
 

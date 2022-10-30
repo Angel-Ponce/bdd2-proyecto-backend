@@ -1,4 +1,3 @@
-import { userResolver } from "@resolvers/users.resolver";
 import { GraphQLError } from "graphql";
 import { Args, Context, Parent } from "@types";
 import { exec } from "@helpers";

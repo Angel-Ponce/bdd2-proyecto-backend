@@ -11,6 +11,7 @@ interface User {
   email: string;
   photoURL: string;
   createdAt: Date;
+  active: boolean;
 }
 
 interface Context {
