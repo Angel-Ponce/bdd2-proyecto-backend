@@ -67,6 +67,16 @@ const userResolver = {
                 return { message: "Usuario eliminado correctamente." };
             return { message: "Ususario no eliminado" };
         },
+        restoreUser: async (_o, args, context) => {
+            if (!context.user)
+                throw new graphql_1.GraphQLError("Sin autenticación");
+            const [data, e1] = await (0, _helpers_1.exec)("restoreUser @0", [args.input.id || 0], false);
+            if (e1)
+                throw e1;
+            if (data.result)
+                return { message: "Usuario restablecido correctamente." };
+            return { message: "Ususario no restablecido" };
+        },
     },
     User: {
         ticketsResolvedCount: async (parent) => {
