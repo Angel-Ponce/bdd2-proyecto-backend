@@ -22,21 +22,17 @@ const logResolver = {
                 description: `Un usuario ha intentado iniciar sesión en la aplicación.<br />Sesión <b>${l.sessionOk ? "éxitosa." : "fallida."}</b><br />Correo probado: ${l.emailAttemp}`,
                 date: l.createdAt,
             }));
-            let deletedTicketsLogs = deletedTicketsLogsQuery.map(async (l) => {
-                const [user] = await (0, _helpers_1.exec)("getUserById @0", [l.userId || 0], false);
+            let deletedTicketsLogs = deletedTicketsLogsQuery.map((l) => {
                 return {
                     title: "Ticket eliminado",
-                    description: `El ticket <b>${l.ticketName}}</b> ha sido eliminado por el usuario <b>${user.name} ${user.lastname}</b>`,
+                    description: `El ticket <b>${l.ticketName}}</b> ha sido eliminado por el usuario <b>${l.userName} ${l.userLastname}</b>`,
                     date: l.deletedAt,
                 };
             });
-            let ticketChangeStatusLogs = ticketChangeStatusLogsQuery.map(async (l) => {
-                const [ticket] = await (0, _helpers_1.exec)("getTicketById @0", [l.ticketId || 0], false);
-                const [user] = await (0, _helpers_1.exec)("getUserById @0", [l.userId || 0], false);
-                const [status] = await (0, _helpers_1.exec)("getStateById @0", [l.statusId || 0], false);
+            let ticketChangeStatusLogs = ticketChangeStatusLogsQuery.map((l) => {
                 return {
                     title: "Ticket modificado",
-                    description: `El usuario <b>${user.name} ${user.lastname}</b> cambio el estado del ticket <b>${ticket.name}</b><br />Nuevo estado: ${status.name}`,
+                    description: `El usuario <b>${l.userName} ${l.userLastname}</b> cambio el estado del ticket <b>${l.ticketName}</b><br />Nuevo estado: ${l.stateName}`,
                     date: l.createdAt,
                 };
             });

@@ -1,5 +1,5 @@
 import { GraphQLError } from "graphql";
-import { Args, Context, Parent } from "@types";
+import { Args, Context } from "@types";
 import { exec } from "@helpers";
 
 const logResolver = {
@@ -30,34 +30,20 @@ const logResolver = {
       }));
 
       let deletedTicketsLogs = deletedTicketsLogsQuery.map(
-        async (l: Record<string, any>) => {
-          const [user] = await exec("getUserById @0", [l.userId || 0], false);
-
+        (l: Record<string, any>) => {
           return {
             title: "Ticket eliminado",
-            description: `El ticket <b>${l.ticketName}}</b> ha sido eliminado por el usuario <b>${user.name} ${user.lastname}</b>`,
+            description: `El ticket <b>${l.ticketName}}</b> ha sido eliminado por el usuario <b>${l.userName} ${l.userLastname}</b>`,
             date: l.deletedAt,
           };
         }
       );
 
       let ticketChangeStatusLogs = ticketChangeStatusLogsQuery.map(
-        async (l: Record<string, any>) => {
-          const [ticket] = await exec(
-            "getTicketById @0",
-            [l.ticketId || 0],
-            false
-          );
-          const [user] = await exec("getUserById @0", [l.userId || 0], false);
-          const [status] = await exec(
-            "getStateById @0",
-            [l.statusId || 0],
-            false
-          );
-
+        (l: Record<string, any>) => {
           return {
             title: "Ticket modificado",
-            description: `El usuario <b>${user.name} ${user.lastname}</b> cambio el estado del ticket <b>${ticket.name}</b><br />Nuevo estado: ${status.name}`,
+            description: `El usuario <b>${l.userName} ${l.userLastname}</b> cambio el estado del ticket <b>${l.ticketName}</b><br />Nuevo estado: ${l.stateName}`,
             date: l.createdAt,
           };
         }
