@@ -43,7 +43,7 @@ const _db_1 = require("./src/db");
 const initServer = async () => {
     await _db_1.db.initialize();
     const app = (0, express_1.default)();
-    app.use((0, cors_1.default)());
+    app.use((0, cors_1.default)({ origin: "*" }));
     app.use(body_parser_1.default.json());
     const httpServer = http_1.default.createServer(app);
     const server = new apollo_server_express_1.ApolloServer({

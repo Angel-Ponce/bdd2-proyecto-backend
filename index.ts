@@ -20,7 +20,7 @@ import { db } from "@db";
 const initServer = async () => {
   await db.initialize();
   const app = express();
-  app.use(cors());
+  app.use(cors({ origin: "*" }));
   app.use(bodyParser.json());
 
   const httpServer = http.createServer(app);
