@@ -68,7 +68,7 @@ const initServer = async () => {
         },
     });
     await server.start();
-    server.applyMiddleware({ app });
+    server.applyMiddleware({ app, cors: true });
     await new Promise((resolve) => httpServer.listen({ port: process.env.PORT || 4010 }, resolve));
 };
 initServer();
