@@ -36,7 +36,13 @@ const logResolver = {
                     date: l.createdAt,
                 };
             });
-            return [...sessionLogs, ...deletedTicketsLogs, ...ticketChangeStatusLogs];
+            return [
+                ...sessionLogs,
+                ...deletedTicketsLogs,
+                ...ticketChangeStatusLogs,
+            ].sort((a, b) => {
+                return new Date(b.date).getTime() - new Date(a.date).getTime();
+            });
         },
     },
 };

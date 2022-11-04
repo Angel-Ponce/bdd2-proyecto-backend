@@ -49,7 +49,13 @@ const logResolver = {
         }
       );
 
-      return [...sessionLogs, ...deletedTicketsLogs, ...ticketChangeStatusLogs];
+      return [
+        ...sessionLogs,
+        ...deletedTicketsLogs,
+        ...ticketChangeStatusLogs,
+      ].sort((a: Record<string, string>, b: Record<string, string>) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
     },
   },
 };
